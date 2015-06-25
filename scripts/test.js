@@ -3,7 +3,8 @@
 var Executor = require('./test/test_util').Executor;
 
 var passingTests = [
-  'node lib/cli.js spec/basicConf.js',
+    //'node lib/cli.js example/Conf.js'
+    'node lib/cli.js spec/basicConf.js'/*
   'node lib/cli.js spec/multiConf.js',
   'node lib/cli.js spec/altRootConf.js',
   'node lib/cli.js spec/onCleanUpAsyncReturnValueConf.js',
@@ -33,10 +34,10 @@ var passingTests = [
   'node lib/cli.js spec/customFramework.js',
   'node node_modules/.bin/jasmine JASMINE_CONFIG_PATH=scripts/unit_test.json',
   'node scripts/interactive_tests/interactive_test.js',
-  'node scripts/interactive_tests/with_base_url.js'
+  'node scripts/interactive_tests/with_base_url.js'*!/*/
 ];
 
-// Plugins
+/*// Plugins
 passingTests.push('node node_modules/minijasminenode/bin/minijn ' +
     'plugins/timeline/spec/unit.js');
 passingTests.push(
@@ -44,7 +45,7 @@ passingTests.push(
     'node lib/cli.js plugins/ngHint/spec/successConfig.js',
     'node lib/cli.js plugins/accessibility/spec/successConfig.js',
     'node lib/cli.js plugins/console/spec/consolePassConfig.js'
-);
+);*/
 
 var executor = new Executor();
 
@@ -53,9 +54,9 @@ passingTests.forEach(function(passing_test) {
       .assertExitCodeOnly();
 });
 
-/*************************
+/*/!*************************
  *Below are failure tests*
- *************************/
+ *************************!/
 
 // assert stacktrace shows line of failure
 executor.addCommandlineTest('node lib/cli.js spec/errorTest/singleFailureConf.js')
@@ -186,6 +187,6 @@ executor.addCommandlineTest(
   .expectExitCode(1)
   .expectErrors([
     {message: 'This is a test error'}
-  ]);
+  ]);*/
 
 executor.execute();

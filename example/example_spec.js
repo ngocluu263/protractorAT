@@ -1,37 +1,51 @@
-describe('angularjs homepage', function() {
-  it('should greet the named user', function() {
-    browser.get('http://www.angularjs.org');
 
-    element(by.model('yourName')).sendKeys('Julie');
+describe('Spider homepage', function() {
 
-    var greeting = element(by.binding('yourName'));
-
-    expect(greeting.getText()).toEqual('Hello Julie!');
+  beforeEach(function(){
+    browser.ignoreSynchronization = true;
   });
+    browser.manage().timeouts().implicitlyWait(10000);
 
-  describe('todo list', function() {
-    var todoList;
+    browser.get('https://cciha.ccinteg.com');
 
-    beforeEach(function() {
-      browser.get('http://www.angularjs.org');
+    element(by.name('Username')).sendKeys('swadmin');
 
-      todoList = element.all(by.repeater('todo in todos'));
-    });
+    element(by.name('Password')).sendKeys('P@ssw0rd');
 
-    it('should list todos', function() {
-      expect(todoList.count()).toEqual(2);
-      expect(todoList.get(1).getText()).toEqual('build an angular app');
-    });
+    element(by.xpath("//span[contains(text(),'Login')]")).click();
 
-    it('should add a todo', function() {
-      var addTodo = element(by.model('todoText'));
-      var addButton = element(by.css('[value="add"]'));
+    element(by.linkText('Receiving')).click();
 
-      addTodo.sendKeys('write a protractor test');
-      addButton.click();
+    element(by.xpath("//span[contains(text(),'Receive New')]")).click();
 
-      expect(todoList.count()).toEqual(3);
-      expect(todoList.get(2).getText()).toEqual('write a protractor test');
-    });
-  });
+    element(by.name('Comment')).sendKeys('test comment');
+
+    element(by.name('Custpo')).sendKeys('ASASADDAD');
+
+    element(by.linkText('Enter Items')).click();
+
 });
+
+
+
+/*
+describe('Spider homepage', function() {
+// TODO: use page objects
+  var loginNameInputElm = element(by.name('Username')) ;
+  var passwordInputElm = element(by.name('Password')) ;
+  var loginBtnElm = element(by.xpath("//span[contains(text(),'Login')]"));
+
+  it('non-angular page so ignore sync and active wait to load', function() {
+    browser.ignoreSynchronization = true;
+    browser.get('https://cciha.ccinteg.com');
+
+    expect(loginNameInputElm.waitSeconds()).toBeTruthy();
+    expect(passwordInputElm.isPresent()).toBe(true);
+  });
+
+  it('should fill user and password and logins', function() {
+    loginNameInputElm.sendKeys('swadmin');
+    passwordInputElm.sendKeys('P@ssw0rd');
+    loginBtnElm.click();
+  });
+});*/

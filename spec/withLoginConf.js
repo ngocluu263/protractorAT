@@ -16,12 +16,8 @@ exports.config = {
   baseUrl: env.baseUrl,
 
   onPrepare: function() {
-    browser.driver.get(env.baseUrl + '/login.html');
-
-    browser.driver.findElement(by.id('username')).sendKeys('Jane');
-    browser.driver.findElement(by.id('password')).sendKeys('1234');
-    browser.driver.findElement(by.id('clickme')).click();
-
+    browser.ignoreSynchronization = true;
+    browser.get(env.baseUrl + '/index.html');
     // Login takes some time, so wait until it's done.
     // For the test app's login, we know it's done when it redirects to
     // index.html.
